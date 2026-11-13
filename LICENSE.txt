@@ -1,0 +1,4 @@
+Dashboard de Presupuesto
+Copyright (c) 2026
+
+Este software se proporciona "tal cual", sin garantía de ningún tipo.

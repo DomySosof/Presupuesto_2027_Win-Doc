@@ -1,0 +1,81 @@
+{
+  "name": "budget-dashboard",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Dashboard de presupuesto con lineas jerarquicas, saldo real y ajustes",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "electron .",
+    "build": "electron-builder --win --x64",
+    "build:portable": "electron-builder --win portable --x64",
+    "build:all": "electron-builder --win --x64 --ia32",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "asar": "^3.2.0",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "allowScripts": {
+    "better-sqlite3@11.10.0": true
+  },
+  "build": {
+    "appId": "com.presupuesto.dashboard",
+    "productName": "Dashboard de Presupuesto",
+    "copyright": "Copyright © 2026",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "electron-main.js",
+      "preload.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "public",
+        "to": "public",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Dashboard de Presupuesto",
+      "uninstallDisplayName": "Dashboard de Presupuesto",
+      "license": "LICENSE.txt",
+      "include": "installer.nsh"
+    },
+    "portable": {
+      "artifactName": "Dashboard-de-Presupuesto-${version}-portable.${ext}"
+    },
+    "asar": true
+  }
+}
